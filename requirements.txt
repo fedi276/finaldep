@@ -1,4 +1,4 @@
-pycaret==1.1.1
+pycaret==2.3.10
 Flask
 gunicorn==19.9.0
 
