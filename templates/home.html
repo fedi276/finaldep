@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Predict Insurance Bill</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  
+
+<style>
+.btn { display: inline-block; *display: inline; *zoom: 1; padding: 4px 10px 4px; margin-bottom: 0; font-size: 13px; line-height: 15px; color: #000000e0; text-align: center;text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75); vertical-align: middle; background-color: #f5f5f5; background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6); background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6); background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6)); background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6); background-image: -o-linear-gradient(top, #ffffff, #e6e6e6); background-image: linear-gradient(top, #ffffff, #e6e6e6); background-repeat: repeat-x; filter: progid:dximagetransform.microsoft.gradient(startColorstr=#ffffff, endColorstr=#e6e6e6, GradientType=0); border-color: #e6e6e6 #e6e6e6 #e6e6e6; border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); border: 1px solid #e6e6e6; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); cursor: pointer; *margin-left: .3em; }
+.btn:hover, .btn:active, .btn.active, .btn.disabled, .btn[disabled] { background-color: #e6e6e6; }
+.btn-large { padding: 5px 10px; font-size: 15px; line-height: normal; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+.btn:hover { color: #fffbfb; text-decoration: none; background-color: #e6e6e6; background-position: 0 -15px; -webkit-transition: background-position 0.1s linear; -moz-transition: background-position 0.1s linear; -ms-transition: background-position 0.1s linear; -o-transition: background-position 0.1s linear; transition: background-position 0.1s linear; }
+.btn-primary, .btn-primary:hover { text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); color: #ffffff; }
+.btn-primary.active { color: rgb(245, 241, 241); }
+.btn-primary { background-color: #4a77d4; background-image: -moz-linear-gradient(top, #6eb6de, #4a77d4); background-image: -ms-linear-gradient(top, #6eb6de, #4a77d4); background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#6eb6de), to(#4a77d4)); background-image: -webkit-linear-gradient(top, #6eb6de, #4a77d4); background-image: -o-linear-gradient(top, #6eb6de, #4a77d4); background-image: linear-gradient(top, #6eb6de, #4a77d4); background-repeat: repeat-x; filter: progid:dximagetransform.microsoft.gradient(startColorstr=#6eb6de, endColorstr=#4a77d4, GradientType=0);  border: 1px solid #3762bc; text-shadow: 1px 1px 1px rgba(0,0,0,0.4); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.5); }
+.btn-primary:hover, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] { filter: none; background-color: #4a77d4; }
+.btn-block { width: 100%; display:block; }
+* { -webkit-box-sizing:border-box; -moz-box-sizing:border-box; -ms-box-sizing:border-box; -o-box-sizing:border-box; box-sizing:border-box; }
+html { width: 100%; height: 100%; overflow:hidden; }
+  body { 
+  width: 100%;
+	height:100%;
+	font-family: 'Open Sans', sans-serif;
+  background: #234c8d;
+	
+	color: #fff;
+	font-size: 18px;
+	text-align:center;
+	letter-spacing:1.2px;
+	background-image: url("{{ url_for('static', filename='test1.jpg') }}");;
+  background-size: 1138px 670px;
+	
+  }
+
+ 
+
+  input{
+    width: 50%; 
+	  height: 80%;
+    margin-bottom: 10px;
+    background: rgb(247, 100, 3);
+    color: rgba(255, 148, 8, 0.904);
+    font-size: 15px;
+    color: rgb(8, 8, 8);
+    
+    
+    
+	  border: 1px solid rgb(252, 252, 252);
+	  border-radius: 4px;
+   	box-shadow: inset 0 -5px 45px rgb(230, 91, 10), 0 1px 1px rgb(230, 91, 10);
+    -webkit-transition: box-shadow .5s ease;
+	  -moz-transition: box-shadow .5s ease;
+	  -o-transition: box-shadow .5s ease;
+	  -ms-transition: box-shadow .5s ease;
+    transition: box-shadow .5s ease; 
+
+  }
+  input:focus { box-shadow: inset 0 -5px 45px rgba(3, 3, 3, 0.836), 0 1px 1px rgba(12, 12, 12, 0.877); }
+
+  ::placeholder {
+    color: #e6e6e6;
+    opacity: 1;
+  }
+
+
+  
+  
+</style>
+</head>
+
+<body>
+ <div class="login text-center">
+   
+  <h1  align ="centre" class="title">
+    
+    Credit Card Prediction      
+
+  </h1>
+  
+
+     <!-- Form to enter new data for predictions  -->
+    <form action="{{ url_for('predict')}}"method="POST">
+      <div class ="form-row">
+        <div class="form-group col-md-4">
+          <label for ="id"></label> 
+         <input type="text" name="id" placeholder="ID" required="required" /><br>
+        </div>
+        <div class="form-group col-md-4">
+          <label for ="amt"></label> 
+           <input type="text" name="amt" placeholder="AMT" required="required" /><br>
+        </div>
+        <div class="form-group col-md-4">
+          <label for ="sex"></label> 
+            <input type="text" name="sex" placeholder="SEX" required="required" /><br>
+        </div>
+      </div>  
+      <div class ="form-row">
+        <div class="form-group col-md-4">
+          <label for ="education"></label>         
+            <input type="text" name="education" placeholder="EDUCATION" required="required" /><br>
+        </div>
+        <div class="form-group col-md-4">
+          <label for ="marriage"></label>     
+            <input type="text" name="marriage" placeholder="MARRIAGE" required="required" /><br>
+        </div>
+        <div class="form-group col-md-4">
+          <label for ="age"></label>  
+            <input type="text" name="age" placeholder="Age" required="required" /><br>
+        </div>
+      </div>
+      <div class ="form-row">
+          <div class="form-group col-md-4">
+            <label for ="rs1"></label> 
+              <input type="text" name="rs1" placeholder="RS1" required="required" /><br>
+          </div>
+          <div class="form-group col-md-4">
+            <label for ="rs2"></label> 
+              <input type="text" name="rs2" placeholder="RS2" required="required" /><br>
+          </div>
+          <div class="form-group col-md-4">
+            <label for ="rs3"></label> 
+              <input type="text" name="rs3" placeholder="RS3" required="required" /><br>
+          </div>
+      </div>
+      <div class ="form-row">
+        <div class="form-group col-md-4">
+          <label for ="rs4"></label> 
+            <input type="text" name="rs4" placeholder="RS4" required="required" /><br>
+        </div>
+        <div class="form-group col-md-4">
+          <label for ="rs5"></label>   
+            <input type="text" name="rs5" placeholder="RS5" required="required" /><br>
+        </div>
+        <div class="form-group col-md-4">
+          <label for ="rs6"></label> 
+             <input type="text" name="rs6" placeholder="RS6" required="required" /><br>
+        </div>
+      </div>
+      <div class ="form-row">
+        <div class="form-group col-md-4">
+          <label for ="f_amt1"></label> 
+            <input type="text" name="f_amt1" placeholder="F_AMT1" required="required" /><br>
+        </div>
+        <div class="form-group col-md-4">
+          <label for ="f_amt2"></label>      
+            <input type="text" name="f_amt2" placeholder="F_AMT2" required="required" /><br>
+        </div>
+        <div class="form-group col-md-4">
+          <label for ="f_amt3"></label>  
+            <input type="text" name="f_amt3" placeholder="F_AMT3" required="required" /><br>
+        </div>
+      </div>
+      <div class ="form-row">
+        <div class="form-group col-md-4">
+          <label for ="f_amt4"></label> 
+            <input type="text" name="f_amt4" placeholder="F_AMT4" required="required" /><br>
+        </div>
+        <div class="form-group col-md-4">
+          <label for ="f_amt5"></label>      
+            <input type="text" name="f_amt5" placeholder="F_AMT5" required="required" /><br>
+        </div>
+        <div class="form-group col-md-4">
+          <label for ="f_amt6"></label>  
+            <input type="text" name="f_amt6" placeholder="F_AMT6" required="required" /><br>
+        </div>
+      </div>
+      <div class ="form-row">
+        <div class="form-group col-md-4">
+          <label for ="pamt1"></label> 
+            <input type="text" name="pamt1" placeholder="PAMT1" required="required" /><br>
+        </div>
+        <div class="form-group col-md-4">
+          <label for ="pamt2"></label>
+            <input type="text" name="pamt2" placeholder="PAMT2" required="required" /><br>
+        </div>
+        <div class="form-group col-md-4">
+          <label for ="pamt3"></label>
+           <input type="text" name="pamt3" placeholder="PAMT3" required="required" /><br>
+        </div>
+      </div>
+      <div class ="form-row">
+        <div class="form-group col-md-4">
+          <label for ="pamt4"></label> 
+            <input type="text" name="pamt4" placeholder="PAMT4" required="required" /><br>
+        </div>
+        <div class="form-group col-md-4">
+          <label for ="pamt2"></label>
+            <input type="text" name="pamt5" placeholder="PAMT5" required="required" /><br>
+        </div>
+        <div class="form-group col-md-4">
+          <label for ="pamt6"></label>
+           <input type="text" name="pamt6" placeholder="PAMT6" required="required" /><br>
+        </div>
+
+      </div>
+      <div class="text-center">
+          <button type="submit" class="btn btn-primary btn-vertical-center">Predict</button>
+             <div class="resultat ml-auto">
+              <h3 class="h3">Predict: {{pred}} </h3>
+          </div>
+      </div>
+
+        
+      
+      
+    </form>
+
+   <br>
+   <br>
+  
+  
+ </div>
+ 
+
+</body>
+</html>
