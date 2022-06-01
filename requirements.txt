@@ -1,5 +1,6 @@
 Flask
 gunicorn==20.1.0
 pycaret==1.0.0
+catboost==0.20.2
 
 
