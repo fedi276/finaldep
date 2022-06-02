@@ -1,4 +1,4 @@
-pycaret==0.0.60
+pycaret==0.0.6
 Flask
 gunicorn==19.9.0
 catboost==0.20.0
